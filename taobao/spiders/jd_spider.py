@@ -22,7 +22,7 @@ class JdSpiderSpider(scrapy.Spider):
             yield Request(url='https://search.jd.com/Search?keyword=笔记本&page={}'.format(page),
                           headers=self.DEFAULT_REQUEST_HEADERS,callback=self.parse
                           ,meta={"page" : page})
-            
+
 
 
             
@@ -45,4 +45,12 @@ class JdSpiderSpider(scrapy.Spider):
         info = tag.find('div',attrs={
             'class':"Ptable"
         })
-        print(info)
+        info_list = info.find_all(
+            'div',attrs={
+                'class':'Ptable-item'
+            }
+            
+        )
+        
+        
+        
